@@ -1,17 +1,34 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <p>
+      {{ $store.state.person }}
+      {{ $store.state.permissions }}
+    </p>
+    <ul v-for="permission in $store.state.permissions" :key="permission">
+      <li>
+        {{ permission }}
+      </li>
+    </ul>
+    <ul v-for="item in $store.state.itemList" :key="item.id">
+      <li>
+        {{ item.title }}
+      </li>
+    </ul>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+  name: "App",
+  created() {
+    console.log(this.$store);
+
+    console.log("sebzeler", this.$store.getters.sebzeler);
+    console.log("user", this.$store.getters.activeUser);
+  },
+
+  methods: {},
+};
 </script>
 
 <style>
